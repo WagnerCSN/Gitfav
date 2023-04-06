@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 62.5%;
+    --bg-primary: black;
+    --ff-header: "Roboto", "san-serif";
+    --fc-input: #06181C;
+    --fc-texting: #7C7C8A;
+    --bg-favoritar: #065E7C;
+}
+
+body{
+    margin: 0 auto;
+    padding: 5rem;
+    max-width: 120rem;
+    font-size: 1.6rem;
+    background: var(--bg-primary);
+    font-family: var(--ff-header);
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.8rem;
+}
+
+#input-favoritar{
+    width: 46.2rem;
+    border: none;
+    background: var(--fc-input);
+    border-radius: .5rem;
+    padding: 1.6rem;
+    color: var(--fc-texting);
+    font-weight: 400;
+}
+
+.vrapper-input{
+    display: flex;
+    gap: .8rem;
+}
+
+.favoritar{
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-favoritar);
+    color: white;
+    cursor: pointer; 
+   
+    border-radius: .5rem;
+    padding: 1.2rem 3.2rem;
+}
+
+.favoritar:hover, svg path:hover{
+    background: white;
+    color: #065E7C;
+    fill: #065E7C;
+}
+
+table{
+    margin-top: 8.7rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+table thead tr{
+    background: #092D38;
+    text-align: left;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 160%;
+    color: #E1E1E6;
+    
+}
+
+table thead tr th:first-child{
+    padding: 1.6rem 0 1.6rem 4rem;
+}
+
+table thead th:first-child{
+    border-top-left-radius: .8rem  ;
+}
+
+table thead th:last-child{
+    border-top-right-radius: .8rem
+}
+
+table tbody tr{
+    height: 10.4rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 160%;
+    color: #E1E1E6;
+}
+
+tbody td:first-child{
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+    justify-content: left;
+    margin: 2.4rem 0 2.4rem 4rem;
+}
+
+tbody tr img{
+    height: 5.6rem;
+    width: 5.6rem;
+    border-radius: 50%;
+}
+
+tbody a{
+    margin: 2.4rem 0 2.4 10.6rem;
+    text-decoration: none;
+    color: white;
+}
+
+span{
+    color: white;
+    font-weight: 400;
+}
+
+p{
+    font-weight: 700;
+}
+
+tbody .remov{
+    color: #F75A68;
+    font-weight: 700;
+    background: none;
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 160%;
+    border: none;
+}    
+
+tbody tr:nth-child(odd){
+    background: #06181C;
+}
+
+tbody tr{
+    background: #34565e;
+}
+
+
+.hide{
+    display: none;
+}
+
+.noFav{
+    display: grid;
+    position: relative;
+}
