@@ -46,21 +46,14 @@ header{
 
 .favoritar{
     display: flex;
-    gap: .8rem;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: .8rem;
     background: var(--bg-favoritar);
     color: white;
     cursor: pointer; 
-   
     border-radius: .5rem;
     padding: 1.2rem 3.2rem;
-}
-
-.favoritar:hover, svg path:hover{
-    background: white;
-    color: #065E7C;
-    fill: #065E7C;
 }
 
 table{
