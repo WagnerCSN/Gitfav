@@ -21,6 +21,15 @@ export class Favorites{
             }
         ]
     }
+
+    delete(user){
+        const filterUserDel = this.entries.filter(entry => {
+            if(entry.login !== user.login){
+
+            }
+        })
+        this.entries = filterUserDel[user...this.entries]
+    }
 }    
 
 export class FavoritesView extends Favorites{
@@ -72,6 +81,12 @@ export class FavoritesView extends Favorites{
             row.querySelector('.user a span').textContent = `${user.login}`
             row.querySelector('.follower').textContent = `${user.followers}`
             row.querySelector('.repository').textContent = `${user.public_repos}`
+            row.querySelector('.remov').onclick = () => {
+                const isOk = confirm(`Tem certeza que quer apagar ${user.login}?`)
+                if(isOk){
+                    this.delete(user)
+                }
+            }
            
             this.tbody.append(row)
         })
