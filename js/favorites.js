@@ -11,7 +11,7 @@ export class Favorites{
     constructor(root){ 
         this.root = document.querySelector(root)
         this.load()
-
+      
        
     }
 
@@ -25,6 +25,10 @@ export class Favorites{
         this.update()
     }
 
+    save(){
+        localStorage.setItem('@Gitfav-favorites:', JSON.stringify(this.entries))
+    }
+
     async add(username){
         try{
             const user = await GithubUser.search(username)
@@ -34,6 +38,7 @@ export class Favorites{
 
             this.entries = [user, ...this.entries]
             this.update()
+            this.save()
         }catch(error){
             alert(error.message)
         }
