@@ -29,6 +29,18 @@ header{
     height: 4.8rem;
 }
 
+.sr-only{
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 #input-favoritar{
     width: 46.2rem;
     border: none;
@@ -56,11 +68,27 @@ header{
     padding: 1.2rem 3.2rem;
 }
 
+.estrela{
+    left: 3.2rem;
+    top: 1rem;
+}
+
+.estrela2{
+    left: 3.2rem;
+    top: 1rem;
+}
+
+.favoritar:hover{
+    background: white;
+    color: #065E7C;
+}
+
 table{
     margin-top: 8.7rem;
     width: 100%;
     border-collapse: collapse;
 }
+
 table thead tr{
     background: #092D38;
     text-align: left;
@@ -68,7 +96,6 @@ table thead tr{
     font-size: 2rem;
     line-height: 160%;
     color: #E1E1E6;
-    
 }
 
 table thead tr th:first-child{
@@ -139,7 +166,6 @@ tbody tr{
     background: #34565e;
 }
 
-
 .hide{
     display: none;
 }
@@ -147,4 +173,5 @@ tbody tr{
 .noFav{
     display: grid;
     position: relative;
+    justify-content: center;
 }

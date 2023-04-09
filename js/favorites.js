@@ -1,18 +1,9 @@
-export class GithubUser{
-    static search(username){
-        const endpoint = `https://api.github.com/users/${username}`
-        return fetch(endpoint)
-                .then(data => data.json())
-                .then(({login, name, followers, public_repos}) => ({login, name, followers, public_repos})) 
-    }
-}
+import {GithubUser} from "./githubusers.js"
 
 export class Favorites{ 
     constructor(root){ 
         this.root = document.querySelector(root)
         this.load()
-      
-       
     }
 
     load(){
@@ -23,6 +14,8 @@ export class Favorites{
         const filterUserDel = this.entries.filter(entry => entry.login !== user.login)
         this.entries = filterUserDel
         this.update()
+        this.save()
+        this.NoFavorites()
     }
 
     save(){
@@ -31,12 +24,20 @@ export class Favorites{
 
     async add(username){
         try{
+           
+            const registeredUser = this.entries.find(entry => entry.login.toLowerCase() === username)
+            this.NoFavorites()
+            if (registeredUser){
+                throw new Error('Usuário já Favoritado')
+            }
+
             const user = await GithubUser.search(username)
             if(user.login === undefined){
                 throw new Error('Usuário não encontrado')
             }
 
             this.entries = [user, ...this.entries]
+           
             this.update()
             this.save()
         }catch(error){
@@ -53,6 +54,7 @@ export class FavoritesView extends Favorites{
         
         this.update()
         this.onadd()
+        this.hover()
     }
 
     createRow(){
@@ -60,8 +62,8 @@ export class FavoritesView extends Favorites{
 
         tr.innerHTML = `
             <td class="user">
-                <img src="https://github.com/wagnercsn.png" alt="Imagem de Wagner">
-                <a href="https://github.com/wagnercsn">
+                <img src="" alt="Imagem de Wagner">
+                <a href="">
                     <p>Wagner Costa</p>
                     <span>wagnercsn</span>
                 </a>
@@ -90,6 +92,7 @@ export class FavoritesView extends Favorites{
             const row = this.createRow()
             row.querySelector('.user img').src = `https://github.com/${user.login}.png`
             row.querySelector('.user img').alt = `Imagem de/${user.name}`
+            row.querySelector('.user a').href = `https://github.com/${user.login}`
             row.querySelector('.user a p').textContent = `${user.name}`
             row.querySelector('.user a span').textContent = `${user.login}`
             row.querySelector('.follower').textContent = `${user.followers}`
@@ -100,23 +103,45 @@ export class FavoritesView extends Favorites{
                     this.delete(user)
                 }
             }
-           
+            this.NoFavorites()
             this.tbody.append(row)
         })
     }
 
     onadd(){
         const buttonFavorite = this.root.querySelector('header .favoritar') 
+        
         buttonFavorite.onclick = () =>{
             const {value} = this.root.querySelector('#input-favoritar')
 
             this.add(value)
         }
-        
     }
 
+    hover(){
+        const estrela = this.root.querySelector(".favoritar .estrela")
+        const estrela2 = this.root.querySelector(".favoritar .estrela2")
+        const button = this.root.querySelector("header .favoritar")
+        button.addEventListener('mouseover', function (){
+            estrela.classList.add('hide')
+            estrela2.classList.remove('hide')
+        })
+
+        button.addEventListener('mouseout', function (){
+            estrela2.classList.add('hide')
+            estrela.classList.remove('hide')
+        })
+    }
+
+    NoFavorites(){
+        const noregister = this.root.querySelector('.noFiv')
+        const noRegisteredUser = this.entries.filter(entry =>entry)
+        
+    
+        if(noRegisteredUser.length===0){
+            noregister.classList.remove('hide');
+        }else{
+            noregister.classList.add('hide');
+        }
+    }
 }
-
-
-
-
